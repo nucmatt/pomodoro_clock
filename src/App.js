@@ -1,6 +1,11 @@
+import React, { useState } from 'react';
 import './scss/style.scss';
 
 function App() {
+	const [breakLength, setBreakLength] = useState(5);
+	const [sessionLength, setSessionLength] = useState(25);
+	const [isRunning, setIsRunning] = useState(false);
+
 	return (
 		<div className='container bg-dark'>
 			<main>
@@ -27,7 +32,7 @@ function App() {
 								+
 							</button>
 							<span id='session-length' className='large'>
-								25
+								{sessionLength}
 							</span>
 							<button id='session-decrement' className='btn'>
 								-
@@ -41,7 +46,7 @@ function App() {
 								+
 							</button>
 							<span id='break-length' className='large'>
-								5
+								{breakLength}
 							</span>
 							<button id='break-decrement' className='btn'>
 								-
