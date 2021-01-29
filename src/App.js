@@ -7,18 +7,18 @@ function App() {
 	const [isRunning, setIsRunning] = useState(false);
 
 	const handleIncrement = (e) => {
-		if (e.target.id === 'session-increment') {
+		if (e.target.id === 'session-increment' && sessionLength <= 59) {
 			setSessionLength(sessionLength + 1)
-		} else if (e.target.id === 'break-increment') {
+		} else if (e.target.id === 'break-increment' && breakLength <= 59) {
 			setBreakLength(breakLength + 1)
 		} else {
 			return
 		}
 	}
 	const handleDecrement = (e) => {
-		if (e.target.id === 'session-decrement') {
+		if (e.target.id === 'session-decrement' && sessionLength > 1) {
 			setSessionLength(sessionLength - 1)
-		} else if (e.target.id === 'break-decrement') {
+		} else if (e.target.id === 'break-decrement' && breakLength > 1) {
 			setBreakLength(breakLength - 1)
 		} else {
 			return
