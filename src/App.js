@@ -15,6 +15,15 @@ function App() {
 			return
 		}
 	}
+	const handleDecrement = (e) => {
+		if (e.target.id === 'session-decrement') {
+			setSessionLength(sessionLength - 1)
+		} else if (e.target.id === 'break-decrement') {
+			setBreakLength(breakLength - 1)
+		} else {
+			return
+		}
+	}
 
 	return (
 		<div className='container bg-dark'>
@@ -44,7 +53,7 @@ function App() {
 							<span id='session-length' className='large'>
 								{sessionLength}
 							</span>
-							<button id='session-decrement' className='btn'>
+							<button id='session-decrement' className='btn' onClick={handleDecrement}>
 								-
 							</button>
 						</div>
@@ -58,7 +67,7 @@ function App() {
 							<span id='break-length' className='large'>
 								{breakLength}
 							</span>
-							<button id='break-decrement' className='btn'>
+							<button id='break-decrement' className='btn' onClick={handleDecrement}>
 								-
 							</button>
 						</div>
