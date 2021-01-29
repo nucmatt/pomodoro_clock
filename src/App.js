@@ -6,6 +6,16 @@ function App() {
 	const [sessionLength, setSessionLength] = useState(25);
 	const [isRunning, setIsRunning] = useState(false);
 
+	const handleIncrement = (e) => {
+		if (e.target.id === 'session-increment') {
+			setSessionLength(sessionLength + 1)
+		} else if (e.target.id === 'break-increment') {
+			setBreakLength(breakLength + 1)
+		} else {
+			return
+		}
+	}
+
 	return (
 		<div className='container bg-dark'>
 			<main>
@@ -28,7 +38,7 @@ function App() {
 					<div id='session' className='m-1'>
 						<h3 id='session-label'>Session Length</h3>
 						<div className='timer-adjust'>
-							<button id='session-increment' className='btn'>
+							<button id='session-increment' className='btn' onClick={handleIncrement}>
 								+
 							</button>
 							<span id='session-length' className='large'>
@@ -42,7 +52,7 @@ function App() {
 					<div id='break' className='m-1'>
 						<h3 id='break-label'>Break Length</h3>
 						<div className='timer-adjust'>
-							<button id='break-increment' className='btn'>
+							<button id='break-increment' className='btn' onClick={handleIncrement}>
 								+
 							</button>
 							<span id='break-length' className='large'>
