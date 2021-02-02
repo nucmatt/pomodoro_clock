@@ -28,6 +28,13 @@ function App() {
 		return setIsRunning(!isRunning);
 	}
 
+	const displayTime = (length) => {
+		let timeInSeconds = length * 60;
+		let minutes = Math.floor(timeInSeconds / 60);
+		let seconds = timeInSeconds - (minutes * 60);
+		return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}` ;
+	}
+
 	return (
 		<div className='container bg-dark'>
 			<main>
@@ -35,7 +42,7 @@ function App() {
 				<div id='timer'>
 					<h2 id='timer-label'>Session</h2>
 					<div id='time-left' className='x-large'>
-						25:00
+						{displayTime(sessionLength)}
 					</div>
 				</div>
 				<div id='controls'>
