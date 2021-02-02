@@ -4,11 +4,12 @@ import './scss/style.scss';
 function App() {
 	const [breakLength, setBreakLength] = useState(5);
 	const [sessionLength, setSessionLength] = useState(25);
+	const [remainingTime, setRemainingTime] = useState(sessionLength)
 	const [isRunning, setIsRunning] = useState(false);
 
 	const handleIncrement = (e) => {
 		if (e.target.id === 'session-increment' && sessionLength <= 59) {
-			setSessionLength(sessionLength + 1)
+			setSessionLength(sessionLength + 1);
 		} else if (e.target.id === 'break-increment' && breakLength <= 59) {
 			setBreakLength(breakLength + 1)
 		} else {
@@ -17,7 +18,7 @@ function App() {
 	}
 	const handleDecrement = (e) => {
 		if (e.target.id === 'session-decrement' && sessionLength > 1) {
-			setSessionLength(sessionLength - 1)
+			setSessionLength(sessionLength - 1);
 		} else if (e.target.id === 'break-decrement' && breakLength > 1) {
 			setBreakLength(breakLength - 1)
 		} else {
@@ -42,7 +43,7 @@ function App() {
 				<div id='timer'>
 					<h2 id='timer-label'>Session</h2>
 					<div id='time-left' className='x-large'>
-						{displayTime(sessionLength)}
+						{displayTime(remainingTime)}
 					</div>
 				</div>
 				<div id='controls'>
