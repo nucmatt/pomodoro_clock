@@ -24,6 +24,9 @@ function App() {
 			return
 		}
 	}
+	const handleTimer = () => {
+		return setIsRunning(!isRunning);
+	}
 
 	return (
 		<div className='container bg-dark'>
@@ -36,8 +39,8 @@ function App() {
 					</div>
 				</div>
 				<div id='controls'>
-					<button id='start_stop' className='btn'>
-						Start/Pause
+					<button id='start_stop' className='btn' onClick={handleTimer}>
+						{isRunning ? 'Stop' : 'Start'}
 					</button>
 					<button id='reset' className='btn'>
 						Reset
