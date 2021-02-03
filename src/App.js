@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import './scss/style.scss';
 
 function App() {
-	const [breakLength, setBreakLength] = useState(.1);
-	const [sessionLength, setSessionLength] = useState(.1);
+	const [breakLength, setBreakLength] = useState(5);
+	const [sessionLength, setSessionLength] = useState(25);
 	const [remainingTime, setRemainingTime] = useState(sessionLength * 60);
 	const [currentTimer, setCurrentTimer] = useState('Session');
 	const [isRunning, setIsRunning] = useState(false);
