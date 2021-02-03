@@ -5,6 +5,7 @@ function App() {
 	const [breakLength, setBreakLength] = useState(5);
 	const [sessionLength, setSessionLength] = useState(25);
 	const [remainingTime, setRemainingTime] = useState(sessionLength * 60);
+	const [currentTimer, setCurrentTimer] = useState('Session');
 	const [isRunning, setIsRunning] = useState(false);
 
 	let intervalRef = useRef();
@@ -50,7 +51,7 @@ function App() {
 			<main>
 				<h1>Pomodoro Clock</h1>
 				<div id='timer'>
-					<h2 id='timer-label'>Session</h2>
+					<h2 id='timer-label'>{currentTimer}</h2>
 					<div id='time-left' className='x-large'>
 						{displayTime(remainingTime)}
 					</div>
