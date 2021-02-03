@@ -9,9 +9,13 @@ function App() {
 	const [isRunning, setIsRunning] = useState(false);
 
 	let intervalRef = useRef();
+	const alarm = useRef();
 	const countDown = () => {
 		setRemainingTime((prev) => prev - 1);
 	};
+	const playAlarm = () => {
+		alarm.current.play();
+	}
 	const switchTimer = () => {
 		return currentTimer === 'Session' ? setCurrentTimer('Break') : setCurrentTimer('Session');
 	};
@@ -25,6 +29,7 @@ function App() {
 	useEffect(() => {
 		if(remainingTime === 0) {
 			switchTimer();
+			playAlarm();
 			setIsRunning(false);
 		}
 	// eslint-disable-next-line	
@@ -139,6 +144,7 @@ function App() {
 						</div>
 					</div>
 				</div>
+				<audio id="beep" ref={alarm} src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" type="audio" />
 			</main>
 		</div>
 	);
