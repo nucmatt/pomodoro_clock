@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './scss/style.scss';
 
 function App() {
-	const [breakLength, setBreakLength] = useState(5);
+	const [breakLength, setBreakLength] = useState(.1);
 	const [sessionLength, setSessionLength] = useState(.1);
 	const [remainingTime, setRemainingTime] = useState(sessionLength * 60);
 	const [currentTimer, setCurrentTimer] = useState('Session');
@@ -17,7 +17,13 @@ function App() {
 		alarm.current.play();
 	}
 	const switchTimer = () => {
-		return currentTimer === 'Session' ? setCurrentTimer('Break') : setCurrentTimer('Session');
+		if (currentTimer === 'Session') {
+			setCurrentTimer('Break');
+			setRemainingTime(breakLength * 60);
+		} else  {
+			setCurrentTimer('Session');
+			setRemainingTime(sessionLength * 60);
+		}
 	};
 	useEffect(() => {
 		if (isRunning) {
@@ -30,7 +36,7 @@ function App() {
 		if(remainingTime === 0) {
 			switchTimer();
 			playAlarm();
-			setIsRunning(false);
+			// setIsRunning(false);
 		}
 	// eslint-disable-next-line	
 	}, [remainingTime]);
