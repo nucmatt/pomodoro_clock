@@ -19,21 +19,37 @@ function App() {
 		}
 	}, [isRunning]);
 	const handleIncrement = (e) => {
-		if (e.target.id === 'session-increment' && sessionLength <= 59) {
-			setSessionLength(sessionLength + 1);
-		} else if (e.target.id === 'break-increment' && breakLength <= 59) {
-			setBreakLength(breakLength + 1);
-		} else {
-			return;
+		if (!isRunning) {
+			if (e.target.id === 'session-increment' && sessionLength <= 59) {
+				setSessionLength(sessionLength + 1);
+				if (currentTimer === 'Session') {
+					setRemainingTime((sessionLength + 1) * 60);
+				}
+			} else if (e.target.id === 'break-increment' && breakLength <= 59) {
+				setBreakLength(breakLength + 1);
+				if (currentTimer === 'Break') {
+					setRemainingTime((breakLength + 1) * 60);
+				}
+			} else {
+				return;
+			}
 		}
 	};
 	const handleDecrement = (e) => {
-		if (e.target.id === 'session-decrement' && sessionLength > 1) {
-			setSessionLength(sessionLength - 1);
-		} else if (e.target.id === 'break-decrement' && breakLength > 1) {
-			setBreakLength(breakLength - 1);
-		} else {
-			return;
+		if (!isRunning) {
+			if (e.target.id === 'session-decrement' && sessionLength > 1) {
+				setSessionLength(sessionLength - 1);
+				if (currentTimer === 'Session') {
+					setRemainingTime((sessionLength - 1) * 60);
+				}
+			} else if (e.target.id === 'break-decrement' && breakLength > 1) {
+				setBreakLength(breakLength - 1);
+				if (currentTimer === 'Break') {
+					setRemainingTime((breakLength - 1) * 60);
+				}
+			} else {
+				return;
+			}
 		}
 	};
 	const handleTimer = () => {
