@@ -15,12 +15,12 @@ function App() {
 	};
 	const playAlarm = () => {
 		alarm.current.play();
-	}
+	};
 	const switchTimer = () => {
 		if (currentTimer === 'Session') {
 			setCurrentTimer('Break');
 			setRemainingTime(breakLength * 60);
-		} else  {
+		} else {
 			setCurrentTimer('Session');
 			setRemainingTime(sessionLength * 60);
 		}
@@ -31,16 +31,15 @@ function App() {
 			return () => clearInterval(intervalRef.current);
 		}
 	}, [isRunning]);
-	
+
 	useEffect(() => {
-		if(remainingTime === 0) {
+		if (remainingTime < 0) {
 			switchTimer();
 			playAlarm();
 			// setIsRunning(false);
 		}
-	// eslint-disable-next-line	
+		// eslint-disable-next-line
 	}, [remainingTime]);
-
 
 	const handleIncrement = (e) => {
 		if (!isRunning) {
@@ -150,7 +149,12 @@ function App() {
 						</div>
 					</div>
 				</div>
-				<audio id="beep" ref={alarm} src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" type="audio" />
+				<audio
+					id='beep'
+					ref={alarm}
+					src='https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav'
+					type='audio'
+				/>
 			</main>
 		</div>
 	);
