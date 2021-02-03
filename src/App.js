@@ -3,7 +3,7 @@ import './scss/style.scss';
 
 function App() {
 	const [breakLength, setBreakLength] = useState(5);
-	const [sessionLength, setSessionLength] = useState(25);
+	const [sessionLength, setSessionLength] = useState(.1);
 	const [remainingTime, setRemainingTime] = useState(sessionLength * 60);
 	const [currentTimer, setCurrentTimer] = useState('Session');
 	const [isRunning, setIsRunning] = useState(false);
@@ -12,12 +12,25 @@ function App() {
 	const countDown = () => {
 		setRemainingTime((prev) => prev - 1);
 	};
+	const switchTimer = () => {
+		return currentTimer === 'Session' ? setCurrentTimer('Break') : setCurrentTimer('Session');
+	};
 	useEffect(() => {
 		if (isRunning) {
 			intervalRef.current = setInterval(countDown, 1000);
 			return () => clearInterval(intervalRef.current);
 		}
 	}, [isRunning]);
+	
+	useEffect(() => {
+		if(remainingTime === 0) {
+			switchTimer();
+			setIsRunning(false);
+		}
+	// eslint-disable-next-line	
+	}, [remainingTime]);
+
+
 	const handleIncrement = (e) => {
 		if (!isRunning) {
 			if (e.target.id === 'session-increment' && sessionLength <= 59) {
