@@ -33,7 +33,7 @@ function App() {
 	}, [isRunning]);
 
 	useEffect(() => {
-		if (remainingTime < 0) {
+		if (remainingTime === 0) {
 			playAlarm();
 			switchTimer();
 			// setIsRunning(false);
