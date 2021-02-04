@@ -75,6 +75,15 @@ function App() {
 			}
 		}
 	};
+	const handleReset = () => {
+		setBreakLength(5);
+		setSessionLength(25);
+		setRemainingTime(25 * 60);
+		setCurrentTimer('Session');
+		setIsRunning(false);
+		alarm.current.pause();
+		alarm.current.currentTime = 0;
+	};
 	const handleTimer = () => {
 		return setIsRunning(!isRunning);
 	};
@@ -99,7 +108,7 @@ function App() {
 					<button id='start_stop' className='btn' onClick={handleTimer}>
 						{isRunning ? 'Stop' : 'Start'}
 					</button>
-					<button id='reset' className='btn'>
+					<button id='reset' className='btn' onClick={handleReset}>
 						Reset
 					</button>
 				</div>
