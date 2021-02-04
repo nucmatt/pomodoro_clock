@@ -91,7 +91,7 @@ function App() {
 	const displayTime = (timeInSeconds) => {
 		let minutes = Math.floor(timeInSeconds / 60);
 		let seconds = timeInSeconds - minutes * 60;
-		return `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+		return `${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
 	};
 
 	return (
