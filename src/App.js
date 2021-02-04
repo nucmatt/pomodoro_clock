@@ -34,9 +34,8 @@ function App() {
 
 	useEffect(() => {
 		if (remainingTime === 0) {
-			switchTimer();
 			playAlarm();
-			// setIsRunning(false);
+			setTimeout(switchTimer, 1000);
 		}
 		// eslint-disable-next-line
 	}, [remainingTime]);
